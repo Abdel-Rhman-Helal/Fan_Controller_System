@@ -1,0 +1,20 @@
+/*
+ ===================================================
+ Author    : Abdel Rhman Helal Saleh
+ File Name : main.c
+ Data      : Oct 8, 2023
+ Time      : 10:17:14 PM
+ ===================================================
+ */
+#include"lm35_sensor.h"
+#include"dc_motor.h"
+#include"lcd.h"
+int main(void) {
+	ADC_ConfigType ADC_LM_35 = { Internal_2_56V, ADC_F_CPU_Pre_8 };
+	ADC_init(&ADC_LM_35);
+
+	for (;;) {
+
+	}
+}
+

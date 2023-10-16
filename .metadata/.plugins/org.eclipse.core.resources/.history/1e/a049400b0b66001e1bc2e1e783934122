@@ -1,0 +1,28 @@
+/*
+ ===================================================
+ Author    : Abdel Rhman Helal Saleh
+ File Name : dc_motor.h
+ Data      : Oct 8, 2023
+ Time      : 8:41:11 PM
+ ===================================================
+ */
+
+#ifndef DC_MOTOR_H_
+#define DC_MOTOR_H_
+
+#include "std_types.h"
+
+/*******************************************************************************
+ *                                Definitions                                  *
+ *******************************************************************************/
+#define DC_MOTOR_PORT PORTA_ID
+#define DC_MOTOR_PIN0 PIN0_ID
+#define DC_MOTOR_PIN1 PIN1_ID
+
+/*******************************************************************************
+ *                         Types Declaration                                   *
+ *******************************************************************************/
+typedef enum {
+	off, CW, A_CW
+} DcMotor_State;
+#endif /* DC_MOTOR_H_ */

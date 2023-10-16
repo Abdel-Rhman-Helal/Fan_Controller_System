@@ -1,0 +1,28 @@
+/*
+ ===================================================
+ Author    : Abdel Rhman Helal Saleh
+ File Name : main.c
+ Data      : Oct 8, 2023
+ Time      : 10:17:14 PM
+ ===================================================
+ */
+#include"lm35_sensor.h"
+#include"dc_motor.h"
+#include"lcd.h"
+int main(void) {
+	ADC_ConfigType ADC_LM_35 = { Internal_2_56V, ADC_F_CPU_Pre_8 };
+	ADC_init(&ADC_LM_35);
+	DcMotor_Init();
+	for (;;) {
+		if (LM35_getTemperature() < 30) {
+			DcMotor_Rotate(off, 0);
+		} else if (LM35_getTemperature() >= 30) {
+			DcMotor_Rotate(CW, 25);
+		} else if (LM35_getTemperature() >= 60) {
+			DcMotor_Rotate(CW, 50);
+		} else if (LM35_getTemperature() >= 90) {
+			DcMotor_Rotate(CW, 50);
+		}
+	}
+}
+

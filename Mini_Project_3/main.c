@@ -1,0 +1,52 @@
+/*
+ ===================================================
+ Author    : Abdel Rhman Helal Saleh
+ File Name : main.c
+ Data      : Oct 8, 2023
+ Time      : 10:17:14 PM
+ ===================================================
+ */
+#include"lm35_sensor.h"
+#include"dc_motor.h"
+#include"lcd.h"
+#include"adc.h"
+int main(void) {
+	ADC_ConfigType ADC_LM_35 = { Internal_2_56V, ADC_F_CPU_Pre_8 };
+	ADC_init(&ADC_LM_35);
+	DcMotor_Init();
+	LCD_init();
+	for (;;) {
+		if (LM35_getTemperature() >= 120) {
+			DcMotor_Rotate(CW, 100);
+			LCD_displayStringRowColumn(0, 3, "FAN is ON ");
+			LCD_displayStringRowColumn(1, 3, "Temp = ");
+			LCD_intgerToString(LM35_getTemperature());
+			LCD_displayString("C");
+		} else if (LM35_getTemperature() >= 90) {
+			DcMotor_Rotate(CW, 75);
+			LCD_displayStringRowColumn(0, 3, "FAN is ON ");
+			LCD_displayStringRowColumn(1, 3, "Temp = ");
+			LCD_intgerToString(LM35_getTemperature());
+			LCD_displayString("C");
+		} else if (LM35_getTemperature() >= 60) {
+			DcMotor_Rotate(CW, 50);
+			LCD_displayStringRowColumn(0, 3, "FAN is ON ");
+			LCD_displayStringRowColumn(1, 3, "Temp = ");
+			LCD_intgerToString(LM35_getTemperature());
+			LCD_displayString("C");
+		} else if (LM35_getTemperature() >= 30) {
+			DcMotor_Rotate(CW, 25);
+			LCD_displayStringRowColumn(0, 3, "FAN is ON ");
+			LCD_displayStringRowColumn(1, 3, "Temp = ");
+			LCD_intgerToString(LM35_getTemperature());
+			LCD_displayString("C");
+		} else if (LM35_getTemperature() < 30) {
+			DcMotor_Rotate(off, 0);
+			LCD_displayStringRowColumn(0, 3, "FAN is OFF");
+			LCD_displayStringRowColumn(1, 3, "Temp = ");
+			LCD_intgerToString(LM35_getTemperature());
+			LCD_displayString("C");
+		}
+	}
+}
+
